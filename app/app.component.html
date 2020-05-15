@@ -8,13 +8,15 @@
 <br>
 
 <tabs>
-  <tab *ngFor="let tab of tabs">
-    <tab-title>
-      Tab <b>{{ tab }}</b> title
-    </tab-title>
-    <tab-content>
-      Tab <b>{{ tab }}</b> content
-      <test [tab]="tab"></test>
-    </tab-content>
-  </tab>
+    <ng-container *ngFor="let tab of tabs">
+        <tab [name]="tab">
+            Tab <b>{{ tab }}</b> title
+        </tab>
+
+        <tab-content [name]="tab">
+            Tab <b>{{ tab }}</b> content
+            <test [tab]="tab"></test>
+        </tab-content>
+        <hr>
+    </ng-container>
 </tabs>

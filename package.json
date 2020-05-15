@@ -1,6 +1,6 @@
 {
-  "name": "vim8-1-tabs-template",
-  "version": "0.0.0",
+  "name": "tabs-widget",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@angular/common": "8.2.0",
