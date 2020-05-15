@@ -1,23 +1,16 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 
 @Injectable()
-export class TabsService implements OnDestroy {
+export class TabsService {
     private tabNames: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
     private readonly activeTabName: BehaviorSubject<string> = new BehaviorSubject<string>(null);
     public readonly activeTabName$: Observable<string> = this.activeTabName.asObservable();
 
-    private subscription: Subscription = new Subscription();
-
     constructor() {
-        this.subscription.add(this.defaultActive());
-    }
-
-    public ngOnDestroy(): void {
-        this.subscription.unsubscribe();
     }
 
     public setActive(name: string): void {
@@ -35,7 +28,7 @@ export class TabsService implements OnDestroy {
         this.tabNames.next(newTabs);
     }
 
-    private defaultActive(): Subscription {
+    public defaultActive(): Subscription {
         return combineLatest(
             this.tabNames,
             this.activeTabName,
